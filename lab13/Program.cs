@@ -25,8 +25,7 @@ namespace lab13
                         Pantallas.EliminarDato();
                         break;
                     case 4:
-                        // Agrega aquí la lógica para ordenar datos de menor a mayor
-                        //Aca no llego explicar y dijo que no lo hicieramos.
+                        Pantallas.OrdenarDatos();
                         break;
                     case 5:
                         break;

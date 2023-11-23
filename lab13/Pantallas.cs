@@ -1,4 +1,5 @@
-﻿using System;
+﻿using lab13;    
+using System;
 
 namespace lab13
 {
@@ -56,7 +57,7 @@ namespace lab13
                     Console.ReadKey();
 
                 }
-                
+
 
             } while (opcion == null);
         }
@@ -155,24 +156,25 @@ namespace lab13
         {
             Console.Clear();
 
-            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("================================");
             Console.WriteLine("Eliminar un dato");
-            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("================================");
 
             MostrarEncuesta();
-            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("================================");
 
             Console.Write("Ingrese la posición a eliminar: ");
             int posicion;
+           
 
             while (!int.TryParse(Console.ReadLine(), out posicion) || posicion < 1 || posicion > contadorEncuestas)
             {
                 Console.WriteLine("Posición no válida. Ingrese nuevamente:");
             }
-
+            Console.WriteLine("================================");
             EliminarEncuesta(posicion - 1);
             MostrarEncuesta();
-            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("================================");
             Console.WriteLine("Presione una tecla para regresar...");
             Console.ReadKey();
         }
@@ -181,7 +183,7 @@ namespace lab13
         {
             for (int i = 0; i < contadorEncuestas; i++)
             {
-                Console.Write($"{i + 1:D3}: [{encuestas[i]}]  ");
+                Console.Write($"{i + 1:D3}:[{encuestas[i]}]  ");
                 if ((i + 1) % 5 == 0)
                     Console.WriteLine();
             }
@@ -196,25 +198,35 @@ namespace lab13
             }
             contadorEncuestas--;
         }
-
-        static string Respuesta(int valor)
+        public static void OrdenarDatos()
         {
-            switch (valor)
+            int[] datosOrdenados = new int[contadorEncuestas];
+            Array.Copy(encuestas, datosOrdenados, contadorEncuestas);
+
+            Array.Sort(datosOrdenados);
+
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Ordenar datos");
+            Console.WriteLine("================================\n");
+            MostrarEncuesta();
+            Console.WriteLine("");
+            Console.WriteLine("================================");
+            Console.WriteLine("Ingrese la posición a eliminar: 6");
+            Console.WriteLine("================================\n");
+
+            for (int i = 0; i < contadorEncuestas; i++)
             {
-                case 1:
-                    return "Nada satisfecho";
-                case 2:
-                    return "No muy satisfecho";
-                case 3:
-                    return "Tolerable";
-                case 4:
-                    return "Satisfecho";
-                case 5:
-                    return "Muy satisfecho";
-                default:
-                    return "Desconocido";
+                Console.Write($"{i + 1:D3}:[{datosOrdenados[i]}]  ");
+                if ((i + 1) % 5 == 0)
+                    Console.WriteLine();
             }
+            Console.WriteLine("");
+            Console.WriteLine("\n================================");
+            Console.WriteLine("\nPresione una tecla para regresar...");
+            Console.ReadKey();
         }
+
+
     }
 }
-
